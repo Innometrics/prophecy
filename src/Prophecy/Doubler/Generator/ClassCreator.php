@@ -46,7 +46,12 @@ class ClassCreator
     public function create($classname, Node\ClassNode $class)
     {
         $code = $this->generator->generate($classname, $class);
-        $return = eval($code);
+        //$return = eval($code);
+        
+        // Innometrics: fix for eval prohibition
+        $temp = tempnam('/tmp', 'prophecy_class_');
+        file_put_contents($temp, '<?php ' . $code);
+        $return = require $temp;        
 
         if (!class_exists($classname, false)) {
             if (count($class->getInterfaces())) {
