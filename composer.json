@@ -17,6 +17,10 @@
         }
     ],
 
+    "replace": {
+        "phpspec/prophecy":"^1.6"
+    },
+    
     "require": {
         "php":                               "^5.3|^7.0",
         "phpdocumentor/reflection-docblock": "^2.0|^3.0.2",
