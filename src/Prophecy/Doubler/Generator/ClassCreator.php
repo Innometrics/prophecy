@@ -53,6 +53,8 @@ class ClassCreator
         file_put_contents($temp, '<?php ' . $code);
         $return = require $temp;        
 
+        unlink($temp);
+        
         if (!class_exists($classname, false)) {
             if (count($class->getInterfaces())) {
                 throw new ClassCreatorException(sprintf(
@@ -66,7 +68,7 @@ class ClassCreator
                 $class
             );
         }
-
+        
         return $return;
     }
 }
